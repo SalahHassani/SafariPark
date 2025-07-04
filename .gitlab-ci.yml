@@ -1,0 +1,17 @@
+stages:
+  - test
+
+test-python:
+  stage: test
+  image: python:3.11
+  tags:
+    - linux
+  before_script:
+    - pip install pygame
+    - pip install pytmx
+    - pip install -r requirements.txt || true
+  script:
+    - python -m compileall .
+  only:
+    - merge_requests
+    - branches
